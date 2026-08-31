@@ -166,9 +166,9 @@ export const siteConfig = {
     label: "Kontakt",
     headline: "Zacznijmy od rozmowy.",
     sub: "Zostaw kontakt — oddzwonimy i ustalimy dogodny termin. Bez presji, bez zobowiązań.",
-    // All contact details are unverified — keep null so UI omits them
+    // Contact details verified from company's own privacy policy (oferta.konkretni.com.pl)
     phone: null as string | null,
-    email: null as string | null,
+    email: "biuro@konkretni.com.pl" as string | null,
     address: null as string | null,
     // form configuration
     form: {
@@ -180,7 +180,7 @@ export const siteConfig = {
       },
       submitLabel: "Wyślij — oddzwonimy",
       privacyNote:
-        "Wysyłając formularz, zgadzasz się na kontakt zwrotny. Dane są przetwarzane wyłącznie w celu odpowiedzi. Szczegóły w polityce prywatności (w przygotowaniu).",
+        "Wysyłając formularz, wyrażasz zgodę na kontakt i przetwarzanie danych (imię, e-mail, telefon) w celu przygotowania odpowiedzi — zgodnie z polityką prywatności.",
       successTitle: "Dziękujemy — wiadomość przyjęta do wysyłki",
       successBody:
         "Twoja wiadomość została przygotowana. Integracja z docelowym systemem kontaktu jest w trakcie konfiguracji — wkrótce potwierdzimy doręczenie.",
@@ -192,7 +192,7 @@ export const siteConfig = {
   footer: {
     brandNote: "KONKRETNI — Konkrety nie obietnice.",
     legal: {
-      entity: null as string | null,
+      entity: "Zespół agentów ubezpieczeniowych KONKRETNI" as string | null,
       nip: null as string | null,
       regon: null as string | null,
       krs: null as string | null,

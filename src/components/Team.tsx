@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { siteConfig } from "@/content/site";
+import { teamMembers } from "@/content/team";
 
 const galleryImages = [
   {
@@ -78,10 +79,6 @@ export function Team() {
               </p>
             </div>
 
-            <p className="team-footnote">
-              Nie pokazujemy sztucznych wizytówek, dopóki nie mamy zweryfikowanych biogramów. Zaufanie budujemy autentycznym zdjęciem zespołu — nie domysłami, kto jest kim.
-            </p>
-
             <div className="team-actions">
               <a href="#kontakt" className="btn btn--primary">
                 Porozmawiajmy
@@ -91,6 +88,21 @@ export function Team() {
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="team-profiles" aria-label="Zespół KONKRETNI — profile">
+          {teamMembers.map((m) => (
+            <article key={m.name} className="team-profile">
+              <h3>{m.name}</h3>
+              <p className="team-profile-role">{m.role}</p>
+              <p className="team-profile-spec">{m.specialization}</p>
+              <ul className="team-profile-facts">
+                {m.facts.map((f) => (
+                  <li key={f}>{f}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -19,24 +19,84 @@ export default function PrivacyPage() {
             <div className="eyebrow">Dokument</div>
             <h1>Polityka prywatności</h1>
             <p style={{ marginTop: 8, color: "var(--muted)" }}>
-              Treść polityki prywatności zostanie uzupełniona po dostarczeniu zweryfikowanych informacji o administratorze danych, podstawie prawnej i zakresie przetwarzania.
+              Niniejsza polityka dotyczy serwisu konkretni.com.pl oraz formularza kontaktowego.
             </p>
 
-            <div style={{ marginTop: 28, padding: 20, background: "var(--paper-2)", border: "1px solid var(--line)", borderRadius: 12 }}>
-              <h2 style={{ fontSize: "1.05rem", marginBottom: 8 }}>Co już wiadomo</h2>
-              <ul style={{ margin: 0, paddingLeft: 18, color: "var(--muted)", lineHeight: 1.7, fontSize: "0.95rem" }}>
-                <li>Formularz kontaktowy zbiera wyłącznie: imię, telefon (opcjonalnie), e-mail, treść wiadomości (opcjonalnie).</li>
-                <li>Dane są przetwarzane wyłącznie w celu kontaktu zwrotnego.</li>
-                <li>Docelowa integracja (e-mail / CRM) jest konfigurowana — patrz <code>/docs/contact-integration.md</code>.</li>
-                <li>Brak narzędzi śledzących dodanych na tym etapie — nie ma dodatkowych zgód analitycznych do wczytania.</li>
-              </ul>
+            <div style={{ marginTop: 32, display: "grid", gap: 26 }}>
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>1. Administrator danych</h2>
+                <p>
+                  Administratorem danych osobowych jest zespół agentów ubezpieczeniowych działających wspólnie pod
+                  nazwą <strong>KONKRETNI</strong>, współpracujących ze sobą przy obsłudze klientów. Kontakt w sprawach
+                  ochrony danych: <a href="mailto:biuro@konkretni.com.pl" style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>biuro@konkretni.com.pl</a>.
+                </p>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>2. Zakres przetwarzanych danych</h2>
+                <p>
+                  Za pośrednictwem formularza kontaktowego zbierane mogą być następujące dane osobowe: imię, numer
+                  telefonu, adres e-mail oraz dobrowolnie podana treść wiadomości.
+                </p>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>3. Cele i podstawa prawna</h2>
+                <p>Dane osobowe są przetwarzane w następujących celach:</p>
+                <ul style={{ margin: "10px 0 0", paddingLeft: 18, lineHeight: 1.8 }}>
+                  <li>kontakt z klientem — art. 6 ust. 1 lit. b RODO,</li>
+                  <li>przedstawienie oferty ubezpieczenia na życie — art. 6 ust. 1 lit. f RODO,</li>
+                  <li>działania marketingowe — art. 6 ust. 1 lit. a RODO.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>4. Okres przechowywania danych</h2>
+                <p>
+                  Dane osobowe będą przechowywane: do czasu zakończenia procesu przygotowania oferty i udzielenia
+                  odpowiedzi; w przypadku zawarcia umowy ubezpieczenia — przez okres wymagany przepisami prawa; w
+                  przypadku zgody marketingowej — do momentu jej cofnięcia.
+                </p>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>5. Odbiorcy danych</h2>
+                <p>
+                  Dane osobowe mogą być udostępniane: towarzystwom ubezpieczeniowym współpracującym z agentami —
+                  wyłącznie w celu przygotowania i przedstawienia oferty oraz zawarcia umowy ubezpieczenia; podmiotom
+                  świadczącym usługi IT i wsparcie techniczne; podmiotom wspierającym działania marketingowe.
+                </p>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>6. Prawa osób, których dane dotyczą</h2>
+                <p>Osoba, której dane dotyczą, ma prawo do:</p>
+                <ul style={{ margin: "10px 0 0", paddingLeft: 18, lineHeight: 1.8 }}>
+                  <li>dostępu do swoich danych,</li>
+                  <li>sprostowania danych,</li>
+                  <li>cofnięcia zgody w dowolnym momencie,</li>
+                  <li>usunięcia danych.</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>7. Dobrowolność podania danych</h2>
+                <p>
+                  Podanie danych osobowych jest dobrowolne, ale konieczne w celu umożliwienia kontaktu i przygotowania
+                  odpowiedzi.
+                </p>
+              </section>
+
+              <section>
+                <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>8. Zabezpieczenia danych</h2>
+                <p>
+                  Administrator stosuje środki techniczne i organizacyjne zapewniające ochronę danych osobowych przed
+                  ich utratą, dostępem osób nieuprawnionych czy nieuprawnionym ujawnieniem.
+                </p>
+              </section>
             </div>
 
-            <div style={{ marginTop: 24, padding: 20, background: "#FFF8EC", border: "1px solid #F0D9A8", borderRadius: 12, color: "#4A380F", fontSize: "0.92rem", lineHeight: 1.6 }}>
-              <strong>Content required:</strong> pełna treść polityki przygotowana przez administratora — dane podmiotu, NIP/REGON/KRS jeśli dotyczy, adres, inspektor ochrony danych (jeśli powołany), okres retencji, prawa użytkownika, informacje o ciasteczkach i ewentualnych narzędziach analitycznych.
-            </div>
-
-            <p style={{ marginTop: 20 }}>
+            <p style={{ marginTop: 32 }}>
               <Link href="/#kontakt" className="btn btn--primary btn--small">
                 Wróć do kontaktu
               </Link>

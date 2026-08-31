@@ -74,6 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               name: siteConfig.brand.name,
               url: siteConfig.seo.url,
               slogan: siteConfig.brand.tagline,
+              email: siteConfig.contact.email ?? undefined,
               logo: `${siteConfig.seo.url}${siteConfig.brand.logo.icon}`,
             }),
           }}
