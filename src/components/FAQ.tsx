@@ -8,7 +8,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="section" aria-labelledby="faq-heading">
+    <section id="faq" className="section section--tight" aria-labelledby="faq-heading">
       <div className="container">
         <div className="faq-wrap">
           <div className="faq-head">

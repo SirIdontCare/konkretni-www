@@ -2,6 +2,30 @@
 
 Publiczny serwis **nie wyświetla** poniższych danych, dopóki nie zostaną zweryfikowane. Miejsce w kodzie jest przygotowane (`siteConfig.*: null` → UI pomija sekcję). Nie ma placeholderów typu „CONTENT REQUIRED” widocznych dla odwiedzających.
 
+## OUTDATED CONTENT — DO NOT REUSE
+
+**Aleksandra Sikora — NIE JEST CZĘŚCIĄ OBECNEGO ZESPOŁU (potwierdzone przez klienta).**
+
+Źródło: scrape `https://oferta.konkretni.com.pl/wideo` (Landingi, landing_id 1944318, „VSL + ANKIETA + WIDEO - Piotr Cegła”).
+
+NIE używać:
+- jej biogramu („Od kilku lat doradczyni ubezpieczeniowa…”, kariera od trenerki personalnej, doświadczenie z obszaru zdrowia itd.)
+- jej roli / tytułu
+- jej zdjęcia (blond, okulary — odpowiada 4. osobie ze STAREGO zdjęcia k1front/k2front, już usuniętego ze strony)
+- jej jako członkini zespołu w jakimkolwiek kontekście (CTA, kontakt, statystyki, testimonial context)
+
+Landing page `oferta.konkretni.com.pl` nadal ją wyświetla — to **przestarzała treść historyczna**; wymaga usunięcia po stronie Landingi (poza zakresem tego workspace).
+
+## Materiał źródłowy ze scrape (wymaga potwierdzenia klienta przed publikacją)
+
+Oferta landing podaje biogramy 3 pozostałych osób — **bez mapowania twarz↔imię**, więc nadal nie publikujemy ich na stronie głównej:
+
+- **Piotr Cegła** — 18 lat w branży (Nordea, Expander, Prudential Polska), 6× TOP Doradca PRU (2019–2024), MDRT, Senior Dyrektor Agencji (od 2024)
+- **Marcin Misiewicz** — indywidualne ubezpieczenia na życie, zabezpieczenia wspólników firm, plany oszczędnościowe dla dzieci, poważne choroby, prywatna emerytura
+- **Aneta Boksa** — wieloletnie doświadczenie, w tym 19 lat jako likwidator szkód, sukcesja dla firm i rodzin
+
+Po stronie klienta do potwierdzenia: czy powyższe fakty/publikacje (MDRT, lata, tytuły) mogą pojawić się na stronie głównej oraz **która osoba jest kim na zdjęciach** (wtedy można dodać zweryfikowane mini-bio bez zdjęcia lub z poprawnym przypisaniem).
+
 ## 1) Dane kontaktowe
 - [ ] telefon (format E.164, np. +48 …) → `siteConfig.contact.phone`
 - [ ] e-mail kontaktowy → `siteConfig.contact.email`

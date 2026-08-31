@@ -9,7 +9,7 @@ export function Footer() {
         <div className="footer-top">
           <div>
             <div className="footer-brand">
-              <Image src={brand.logo.dark} alt={brand.logo.alt} width={44} height={44} style={{ objectFit: "contain" }} />
+              <Image src={brand.logo.dark} alt={brand.logo.alt} width={56} height={56} style={{ objectFit: "contain" }} />
               <div>
                 <strong>{brand.name}</strong>
                 <small>{brand.tagline}</small>

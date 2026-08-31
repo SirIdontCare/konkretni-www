@@ -3,7 +3,7 @@ import { siteConfig } from "@/content/site";
 export function Philosophy() {
   const { philosophy } = siteConfig;
   return (
-    <section className="section" aria-labelledby="philosophy-heading">
+    <section className="section section--philosophy" aria-labelledby="philosophy-heading">
       <div className="container">
         <div className="philosophy">
           <div className="eyebrow">{philosophy.label}</div>
