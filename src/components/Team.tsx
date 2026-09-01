@@ -2,18 +2,20 @@ import Image from "next/image";
 import { siteConfig } from "@/content/site";
 import { teamMembers } from "@/content/team";
 
-const galleryImages = [
+const teamImages = [
+  {
+    src: "/photos/k2front.jpg",
+    alt: "Zespół KONKRETNI — portret zespołu",
+    width: 1448,
+    height: 1086,
+    kicker: "Portret zespołu",
+  },
   {
     src: "/photos/k1front.jpg",
     alt: "Zespół KONKRETNI podczas pracy — rozmowa telefoniczna, laptop, notatki",
     width: 1448,
     height: 1086,
-  },
-  {
-    src: "/photos/k3front.jpg",
-    alt: "Zespół KONKRETNI w jasnym wnętrzu biura — portret grupowy",
-    width: 1448,
-    height: 1086,
+    kicker: "Zespół w pracy",
   },
 ];
 
@@ -24,41 +26,26 @@ export function Team() {
       <div className="container">
         <div className="team-grid">
           <div className="team-visual">
-            <div className="team-gallery">
-              <figure className="team-figure team-figure--main">
-                <div className="team-frame">
-                  <Image
-                    src={team.image.src}
-                    alt={team.image.alt}
-                    width={team.image.width}
-                    height={team.image.height}
-                    sizes="(max-width: 980px) 100vw, 620px"
-                    style={{ objectFit: "cover" }}
-                  />
-                </div>
-                <figcaption className="team-figcap">
-                  <span className="team-figcap-kicker">Fotografia autentyczna</span>
-                  <span className="team-figcap-title">Zespół KONKRETNI — trzy osoby, jedno ujęcie</span>
-                </figcaption>
-              </figure>
-
-              <div className="team-gallery-side" aria-hidden="false">
-                {galleryImages.map((img) => (
-                  <figure key={img.src} className="team-figure team-figure--small">
-                    <div className="team-frame team-frame--small">
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        width={img.width}
-                        height={img.height}
-                        sizes="(max-width: 980px) 50vw, 300px"
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
-                  </figure>
-                ))}
-              </div>
+            <div className="team-gallery team-gallery--duo">
+              {teamImages.map((img) => (
+                <figure key={img.src} className="team-figure">
+                  <div className="team-frame">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      width={img.width}
+                      height={img.height}
+                      sizes="(max-width: 980px) 100vw, 320px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  </div>
+                </figure>
+              ))}
             </div>
+            <figcaption className="team-figcap" style={{ marginTop: 12 }}>
+              <span className="team-figcap-kicker">Fotografia autentyczna</span>
+              <span className="team-figcap-title">Zespół KONKRETNI — portret oraz praca z klientami</span>
+            </figcaption>
             <p className="team-note">{team.groupNote}</p>
           </div>
 
