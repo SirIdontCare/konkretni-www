@@ -4,8 +4,22 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { siteConfig } from "@/content/site";
 
-export function Navigation({ variant = "hero" }: { variant?: "hero" | "light" }) {
+type NavLink = { label: string; href: string };
+
+export function Navigation({
+  variant = "hero",
+  links,
+  cta,
+}: {
+  variant?: "hero" | "light";
+  /** Optional link overrides (e.g. campaign landings). Defaults to site navigation. */
+  links?: NavLink[];
+  /** Optional CTA override. Defaults to site navigation CTA. */
+  cta?: NavLink;
+}) {
   const [open, setOpen] = useState(false);
+  const navLinks = links ?? siteConfig.nav.links;
+  const navCta = cta ?? siteConfig.nav.cta;
 
   // Close on escape and on resize to desktop
   useEffect(() => {
@@ -61,7 +75,7 @@ export function Navigation({ variant = "hero" }: { variant?: "hero" | "light" })
 
           <nav aria-label="Główna nawigacja" className="hidden md:flex">
             <ul className="nav-links">
-              {siteConfig.nav.links.map((l) => (
+              {navLinks.map((l) => (
                 <li key={l.href}>
                   <a href={l.href}>{l.label}</a>
                 </li>
@@ -70,8 +84,8 @@ export function Navigation({ variant = "hero" }: { variant?: "hero" | "light" })
           </nav>
 
           <div className="nav-actions">
-            <a href={siteConfig.nav.cta.href} className="btn btn--primary nav-desktop" style={{ display: open ? "none" : undefined }}>
-              {siteConfig.nav.cta.label}
+            <a href={navCta.href} className="btn btn--primary nav-desktop" style={{ display: open ? "none" : undefined }}>
+              {navCta.label}
             </a>
             <button
               type="button"
@@ -89,7 +103,7 @@ export function Navigation({ variant = "hero" }: { variant?: "hero" | "light" })
         <div id="mobile-panel" className="mobile-panel" hidden={!open}>
           <nav aria-label="Menu mobilne">
             <ul className="mobile-links">
-              {siteConfig.nav.links.map((l) => (
+              {navLinks.map((l) => (
                 <li key={l.href}>
                   <a href={l.href} onClick={() => setOpen(false)}>
                     {l.label}
@@ -98,8 +112,8 @@ export function Navigation({ variant = "hero" }: { variant?: "hero" | "light" })
               ))}
             </ul>
             <div style={{ marginTop: 18, display: "flex", gap: 12 }}>
-              <a href={siteConfig.nav.cta.href} className="btn btn--primary" style={{ flex: 1 }} onClick={() => setOpen(false)}>
-                {siteConfig.nav.cta.label}
+              <a href={navCta.href} className="btn btn--primary" style={{ flex: 1 }} onClick={() => setOpen(false)}>
+                {navCta.label}
               </a>
             </div>
           </nav>

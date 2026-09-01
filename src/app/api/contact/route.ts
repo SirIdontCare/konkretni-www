@@ -17,7 +17,30 @@ type Payload = {
   phone?: string;
   message?: string;
   _hp?: string; // Honeypot field for bot mitigation
+  attribution?: Record<string, unknown>; // Optional lead attribution (fbclid/UTM/source) — never trusted raw
 };
+
+const ATTRIBUTION_KEYS = ["fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "landing_page", "source"] as const;
+
+function sanitizeAttribution(raw: Record<string, unknown> | undefined): Record<string, string> {
+  const out: Record<string, string> = {};
+  if (!raw || typeof raw !== "object") return out;
+  for (const key of ATTRIBUTION_KEYS) {
+    const value = raw[key];
+    if (typeof value !== "string") continue;
+    const clean = value
+      .replace(/[\u0000-\u001f\u007f]/g, "")
+      .trim()
+      .slice(0, 300);
+    if (clean.length > 0) out[key] = clean;
+  }
+  return out;
+}
+
+function formatAttributionBlock(a: Record<string, string>): string {
+  const lines = Object.entries(a).map(([k, v]) => `${k}: ${v}`);
+  return lines.length > 0 ? `\n\n---\nAtrybucja zgłoszenia:\n${lines.join("\n")}` : "";
+}
 
 // In-memory rate limiting: max 5 requests per 60 seconds per IP
 const ipHits = new Map<string, { count: number; resetTime: number }>();
@@ -79,6 +102,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, message: "Treść wiadomości jest zbyt długa (maks. 3000 znaków)." }, { status: 400 });
   }
 
+  const attribution = sanitizeAttribution(body.attribution);
+  const attributionBlock = formatAttributionBlock(attribution);
+
   const toEmail = process.env.CONTACT_TO_EMAIL;
   const resendApiKey = process.env.RESEND_API_KEY;
   const webhookUrl = process.env.CRM_WEBHOOK_URL || process.env.CONTACT_WEBHOOK_URL;
@@ -98,7 +124,7 @@ export async function POST(req: Request) {
           to: [toEmail],
           reply_to: email,
           subject: `Nowe zapytanie: ${name}`,
-          text: `Nowe zgłoszenie z serwisu KONKRETNI:\n\nImię: ${name}\nE-mail: ${email}\nTelefon: ${phone || "(nie podano)"}\n\nWiadomość:\n${message || "(brak wiadomości)"}\n\n---\nData: ${new Date().toISOString()}\nIP: ${clientIp}`,
+          text: `Nowe zgłoszenie z serwisu KONKRETNI:\n\nImię: ${name}\nE-mail: ${email}\nTelefon: ${phone || "(nie podano)"}\n\nWiadomość:\n${message || "(brak wiadomości)"}${attributionBlock}\n\n---\nData: ${new Date().toISOString()}\nIP: ${clientIp}`,
         }),
       });
 
@@ -129,7 +155,7 @@ export async function POST(req: Request) {
       const webhookRes = await fetch(webhookUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, phone, message, clientIp, timestamp: new Date().toISOString() }),
+        body: JSON.stringify({ name, email, phone, message, clientIp, timestamp: new Date().toISOString(), attribution }),
       });
 
       if (!webhookRes.ok) {
