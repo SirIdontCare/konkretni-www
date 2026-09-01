@@ -35,17 +35,17 @@ export function Team() {
                       alt={img.alt}
                       width={img.width}
                       height={img.height}
-                      sizes="(max-width: 980px) 100vw, 320px"
+                      sizes="(max-width: 980px) 100vw, 420px"
                       style={{ objectFit: "cover" }}
                     />
                   </div>
                 </figure>
               ))}
             </div>
-            <figcaption className="team-figcap" style={{ marginTop: 12 }}>
-              <span className="team-figcap-kicker">Fotografia autentyczna</span>
-              <span className="team-figcap-title">Zespół KONKRETNI — portret oraz praca z klientami</span>
-            </figcaption>
+            <div className="team-figcap">
+              <span className="team-figcap-kicker">Ludzie KONKRETNYCH</span>
+              <span className="team-figcap-title">Piotr Cegła · Aneta Boksa · Marcin Misiewicz</span>
+            </div>
             <p className="team-note">{team.groupNote}</p>
           </div>
 

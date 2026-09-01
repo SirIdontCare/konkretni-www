@@ -179,9 +179,8 @@ export const siteConfig = {
       width: 1535,
       height: 1024,
     },
-    // Team is presented as a group. Do not map names to faces without verified mapping.
     groupNote:
-      "Na zdjęciu zespół KONKRETNI. Tożsamości poszczególnych osób nie są przypisane do twarzy bez weryfikacji — pokazujemy zespół jako całość.",
+      "Ponad 40 lat łącznego doświadczenia w ubezpieczeniach na życie, likwidacji szkód i prawie odszkodowawczym.",
     // Placeholder for future verified bios — keep null until verified
     members: null as null | Array<{ name: string; role: string; photoIndex: number }>,
   },
