@@ -714,6 +714,71 @@ a:hover { color: inherit; }
   .process-step:last-child { border-bottom: none; }
 }
 
+/* Outcomes — Dowiesz się, jak… */
+.outcomes {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+.outcomes-wrap {
+  max-width: 1040px;
+  margin-inline: auto;
+}
+.outcomes-head {
+  max-width: 640px;
+  margin-bottom: 36px;
+}
+.outcomes-head h2 {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  margin: 10px 0 12px;
+}
+.outcomes-head p {
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 48px;
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+.outcomes-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.outcomes-num {
+  font-family: var(--font-inter);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--champagne-deep);
+  padding-top: 4px;
+}
+.outcomes-body h3 {
+  font-size: 1.18rem;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.outcomes-body p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+@media (max-width: 768px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-top: 24px;
+  }
+}
+
 /* Team — editorial, calm */
 .team-grid {
   display: grid;

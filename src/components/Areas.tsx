@@ -1,26 +1,7 @@
 import { siteConfig } from "@/content/site";
 
-const audience = [
-  {
-    key: "Myślą o dziecku",
-    want: "chcą zbudować mu bezpieczny start w dorosłość.",
-  },
-  {
-    key: "Planują emeryturę",
-    want: "chcą uniezależnić się od ZUS i mieć pewność środków na przyszłość.",
-  },
-  {
-    key: "Odpowiadają za finanse rodziny",
-    want: "chcą, by choroba lub wypadek nie zachwiały domowym budżetem.",
-  },
-  {
-    key: "Pracują lub prowadzą firmę",
-    want: "chcą wiedzieć, ile realnie otrzymają w razie wypadku lub niezdolności do pracy.",
-  },
-];
-
 export function Areas() {
-  const { areas } = siteConfig;
+  const { areas, audience } = siteConfig;
   return (
     <section id="obszary" className="section section--tight" aria-labelledby="areas-heading">
       <div className="container">
@@ -49,12 +30,14 @@ export function Areas() {
           ))}
         </div>
 
-        <div className="areas-audience">
-          <p className="areas-audience-label">Mamy dla Ciebie konkretną propozycję — najczęściej rozmawiamy z osobami, które:</p>
+        <div className="areas-audience" aria-labelledby="audience-label">
+          <p id="audience-label" className="areas-audience-label">
+            {audience.headline}
+          </p>
           <ul>
-            {audience.map((a) => (
-              <li key={a.key}>
-                <strong>{a.key}</strong> — {a.want}
+            {audience.items.map((a) => (
+              <li key={a.group}>
+                <strong>{a.group}</strong> — {a.need}
               </li>
             ))}
           </ul>

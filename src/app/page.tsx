@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Philosophy } from "@/components/Philosophy";
 import { Areas } from "@/components/Areas";
 import { Process } from "@/components/Process";
+import { Outcomes } from "@/components/Outcomes";
 import { Team } from "@/components/Team";
 import { FAQ } from "@/components/FAQ";
 import { Contact } from "@/components/Contact";
@@ -20,6 +21,7 @@ export default function Home() {
         </div>
         <Areas />
         <Process />
+        <Outcomes />
         <Team />
         <div className="container">
           <div className="rule" aria-hidden="true" />

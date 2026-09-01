@@ -23,7 +23,7 @@ function validate(values: { name: string; email: string; phone: string; message:
 
 export function Contact() {
   const { contact } = siteConfig;
-  const [values, setValues] = useState({ name: "", email: "", phone: "", message: "" });
+  const [values, setValues] = useState({ name: "", email: "", phone: "", message: "", _hp: "" });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [status, setStatus] = useState<null | { type: "success" | "error" | "info"; title: string; body: string }>(null);
@@ -45,7 +45,6 @@ export function Contact() {
     setStatus(null);
 
     try {
-      // Integration boundary: try POST to /api/contact if exists, otherwise show info state
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -58,23 +57,22 @@ export function Contact() {
           title: contact.form.successTitle,
           body: contact.form.successBody,
         });
-        setValues({ name: "", email: "", phone: "", message: "" });
+        setValues({ name: "", email: "", phone: "", message: "", _hp: "" });
         setTouched({});
       } else {
-        // Handle missing integration gracefully — do not fake success
         const data = await res.json().catch(() => null);
-        const msg = data?.message ?? "Integracja formularza jest w trakcie konfiguracji. Twoje dane nie zostały jeszcze wysłane do docelowego systemu.";
+        const msg = data?.message ?? "Nie udało się wysłać wiadomości. Spróbuj ponownie później lub napisz bezpośrednio na adres biuro@konkretni.com.pl.";
         setStatus({
-          type: "info",
-          title: "Formularz gotowy — integracja w przygotowaniu",
-          body: msg + " Zostaw kontakt, a my potwierdzimy doręczenie po podłączeniu skrzynki / CRM.",
+          type: "error",
+          title: "Nie udało się wysłać wiadomości",
+          body: msg,
         });
       }
     } catch {
       setStatus({
-        type: "info",
-        title: "Brak połączenia z systemem doręczeń",
-        body: "Nie udało się wysłać wiadomości — docelowa integracja (e-mail / CRM / webhook) nie jest jeszcze skonfigurowana. Skonfiguruj /api/contact, aby włączyć rzeczywistą wysyłkę. Dokumentacja: /docs/contact-integration.md",
+        type: "error",
+        title: "Błąd połączenia",
+        body: "Wystąpił problem z połączeniem. Spróbuj ponownie za chwilę lub napisz bezpośrednio na adres biuro@konkretni.com.pl.",
       });
     } finally {
       setSubmitting(false);
@@ -124,6 +122,17 @@ export function Contact() {
             <p>Pola oznaczone * są wymagane. Odpowiadamy bez presji — ustalamy dogodny termin rozmowy.</p>
 
             <form noValidate onSubmit={onSubmit} aria-describedby="form-privacy">
+              {/* Honeypot field for bot mitigation */}
+              <input
+                type="text"
+                name="_hp"
+                tabIndex={-1}
+                autoComplete="off"
+                style={{ display: "none" }}
+                value={values._hp}
+                onChange={(e) => setValues((v) => ({ ...v, _hp: e.target.value }))}
+                aria-hidden="true"
+              />
               <div className="form-grid">
                 <div className="field">
                   <label htmlFor="c-name">

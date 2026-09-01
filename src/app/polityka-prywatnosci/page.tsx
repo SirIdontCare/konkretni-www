@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { siteConfig } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Polityka prywatności | KONKRETNI",
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPage() {
+  const { legal } = siteConfig;
   return (
     <>
       <Navigation variant="light" />
@@ -26,9 +28,19 @@ export default function PrivacyPage() {
               <section>
                 <h2 style={{ fontSize: "1.15rem", marginBottom: 10 }}>1. Administrator danych</h2>
                 <p>
-                  Administratorem danych osobowych jest zespół agentów ubezpieczeniowych działających wspólnie pod
-                  nazwą <strong>KONKRETNI</strong>, współpracujących ze sobą przy obsłudze klientów. Kontakt w sprawach
-                  ochrony danych: <a href="mailto:biuro@konkretni.com.pl" style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>biuro@konkretni.com.pl</a>.
+                  Administratorem danych osobowych jest{" "}
+                  {legal.entityName ? (
+                    <strong>{legal.entityName}</strong>
+                  ) : (
+                    <>
+                      zespół agentów ubezpieczeniowych działających wspólnie pod nazwą <strong>KONKRETNI</strong>
+                    </>
+                  )}
+                  {legal.address ? `, z siedzibą: ${legal.address}` : ""}, współpracujących ze sobą przy obsłudze klientów.
+                  Kontakt w sprawach ochrony danych:{" "}
+                  <a href={`mailto:${legal.privacyEmail}`} style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>
+                    {legal.privacyEmail}
+                  </a>.
                 </p>
               </section>
 

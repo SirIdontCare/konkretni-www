@@ -1,12 +1,10 @@
 /**
- * ACTIVE KONKRETNI team — recovered from company's own landing page
- * (oferta.konkretni.com.pl/wideo, "Poznaj zespół") + client overrides.
+ * ACTIVE KONKRETNI team — verified data
  *
- * OVERRIDES CURRENT > LEGACY (Piotr): 20 lat (nie 18), 8× MDRT (nie 6× TOP jako główny fakt),
- * Senior Dyrektor Agencji PRU, Współtwórca KONKRETNYCH.
- *
- * OUTDATED — DO NOT REUSE: Aleksandra Sikora (nieaktywna, potwierdzone przez klienta).
- * Brak mapowania twarz↔imię — profile celowo nie mają zdjęć.
+ * Current verified profiles:
+ * - Piotr Cegła (Senior Dyrektor Agencji Pru, 20 lat doświadczenia, 8× MDRT, Współtwórca KONKRETNYCH)
+ * - Marcin Misiewicz (Doradca ubezpieczeniowy, ubezpieczenia na życie, ochrona firm i wspólników)
+ * - Aneta Boksa (Doradca ubezpieczeniowy, 19 lat jako likwidator szkód, sukcesja majątkowa)
  */
 
 export type TeamMember = {
@@ -19,29 +17,29 @@ export type TeamMember = {
 export const teamMembers: TeamMember[] = [
   {
     name: "Piotr Cegła",
-    role: "Współtwórca KONKRETNYCH · Senior Dyrektor Agencji PRU",
-    specialization: "Rozwija i buduje zespoły doradców; pracuje na rekomendacjach.",
+    role: "Senior Dyrektor Agencji Pru · Współtwórca KONKRETNYCH",
+    specialization: "Buduje i rozwija zespoły doradców; doradza w oparciu o rekomendacje.",
     facts: [
-      "20 lat w branży ubezpieczeniowej — Nordea, Expander, Prudential Polska.",
-      "8× MDRT — międzynarodowe stowarzyszenie doradców.",
+      "20 lat doświadczenia w branży finansowo-ubezpieczeniowej.",
+      "8× MDRT — członek międzynarodowego stowarzyszenia najlepszych doradców.",
     ],
   },
   {
     name: "Marcin Misiewicz",
     role: "Doradca ubezpieczeniowy",
-    specialization: "Indywidualne ubezpieczenia na życie — klienci prywatni i firmowi.",
+    specialization: "Indywidualne ubezpieczenia na życie oraz ochrona finansowa firm.",
     facts: [
-      "Zabezpieczenia finansowe wspólników firm i kluczowych osób.",
-      "Plany oszczędnościowe dla dzieci — ubezpieczenia posagowe.",
+      "Zabezpieczenia wspólników i kluczowych osób w biznesie.",
+      "Plany oszczędnościowe dla dzieci oraz ochrona na wypadek chorób.",
     ],
   },
   {
     name: "Aneta Boksa",
     role: "Doradca ubezpieczeniowy",
-    specialization: "Sukcesja dla firm i rodzin — zabezpieczenie i przekazanie majątku.",
+    specialization: "Sukcesja majątkowa dla rodzin i przedsiębiorstw.",
     facts: [
-      "19 lat jako likwidator szkód.",
-      "Praktyczna znajomość dystrybucji ubezpieczeń, prawa cywilnego i finansów.",
+      "19 lat doświadczenia jako likwidator szkód ubezpieczeniowych.",
+      "Praktyczna znajomość prawa cywilnego i procedur odszkodowawczych.",
     ],
   },
 ];

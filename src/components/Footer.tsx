@@ -51,10 +51,23 @@ export function Footer() {
                 <a href="/sitemap.xml">Mapa strony</a>
               </li>
             </ul>
-            <div style={{ marginTop: 18, fontSize: "0.78rem", color: "rgba(255,255,255,0.52)", lineHeight: 1.6 }}>
-              {footer.legal.entity ? <div>{footer.legal.entity}</div> : <div style={{ opacity: 0.6 }}>Dane podmiotu — w przygotowaniu</div>}
-              {/* Legal identifiers omitted until verified */}
-            </div>
+            {(siteConfig.legal.entityName || siteConfig.legal.nip || siteConfig.legal.address) ? (
+              <div style={{ marginTop: 18, fontSize: "0.78rem", color: "rgba(255,255,255,0.52)", lineHeight: 1.6 }}>
+                {siteConfig.legal.entityName && <div>{siteConfig.legal.entityName}</div>}
+                {siteConfig.legal.address && <div>{siteConfig.legal.address}</div>}
+                {(siteConfig.legal.nip || siteConfig.legal.regon || siteConfig.legal.krs) && (
+                  <div>
+                    {[
+                      siteConfig.legal.nip ? `NIP: ${siteConfig.legal.nip}` : null,
+                      siteConfig.legal.regon ? `REGON: ${siteConfig.legal.regon}` : null,
+                      siteConfig.legal.krs ? `KRS: ${siteConfig.legal.krs}` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" • ")}
+                  </div>
+                )}
+              </div>
+            ) : null}
           </div>
         </div>
 

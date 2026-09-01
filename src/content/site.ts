@@ -10,8 +10,8 @@ export const siteConfig = {
     tagline: "Konkrety nie obietnice",
     logo: {
       light: "/brand/logo1.png",
-      dark: "/brand/logobw.png",
-      icon: "/brand/cropped-logobw.png",
+      dark: "/brand/logo1.png",
+      icon: "/brand/logo1.png",
       alt: "KONKRETNI — sygnet tarczy z filarem",
       width: 180,
       height: 180,
@@ -82,6 +82,29 @@ export const siteConfig = {
     ],
   },
 
+  audience: {
+    label: "Dla kogo",
+    headline: "Najczęściej rozmawiamy z osobami, które:",
+    items: [
+      {
+        group: "Rodzice",
+        need: "chcą zadbać o posag i bezpieczny start dziecka w dorosłość.",
+      },
+      {
+        group: "Osoby myślące o emeryturze",
+        need: "chcą uniezależnić się od ZUS i mieć pewność środków na przyszłość.",
+      },
+      {
+        group: "Osoby odpowiedzialne za rodzinę",
+        need: "chcą, by choroba lub wypadek nie zachwiały domowym budżetem.",
+      },
+      {
+        group: "Pracownicy i przedsiębiorcy",
+        need: "chcą wiedzieć, ile realnie otrzymają w razie wypadku lub niezdolności do pracy.",
+      },
+    ],
+  },
+
   process: {
     label: "Jak działamy",
     headline: "Najpierw rozmowa. Potem plan. Na końcu rozwiązania.",
@@ -105,6 +128,38 @@ export const siteConfig = {
       },
     ],
     note: "Bez presji. Bez pustych obietnic. Za to z uwagą na detale, które decydują, gdy przychodzi moment próby.",
+  },
+
+  outcomes: {
+    label: "Rezultaty",
+    headline: "Dowiesz się, jak…",
+    intro: "Krótko i konkretnie. Podczas rozmowy porządkujemy to, co kluczowe — bez żargonu i bez presji:",
+    items: [
+      {
+        number: "01",
+        title: "Chronić siebie i bliskich",
+        description:
+          "przed finansowymi skutkami nagłych zdarzeń: poważnej choroby, wypadku czy niezdolności do pracy.",
+      },
+      {
+        number: "02",
+        title: "Budować kapitał na przyszłość",
+        description:
+          "bez zbędnych kosztów, ukrytych opłat i skomplikowanej obsługi.",
+      },
+      {
+        number: "03",
+        title: "Zabezpieczyć dziecko",
+        description:
+          "tworząc stabilny plan posagowy na bezpieczny start w dorosłe życie.",
+      },
+      {
+        number: "04",
+        title: "Przygotować prywatną emeryturę",
+        description:
+          "w oparciu o przewidywalny plan dopasowany do Twoich realnych możliwości.",
+      },
+    ],
   },
 
   team: {
@@ -181,22 +236,25 @@ export const siteConfig = {
       submitLabel: "Wyślij — oddzwonimy",
       privacyNote:
         "Wysyłając formularz, wyrażasz zgodę na kontakt i przetwarzanie danych (imię, e-mail, telefon) w celu przygotowania odpowiedzi — zgodnie z polityką prywatności.",
-      successTitle: "Dziękujemy — wiadomość przyjęta do wysyłki",
+      successTitle: "Dziękujemy — wiadomość została wysłana",
       successBody:
-        "Twoja wiadomość została przygotowana. Integracja z docelowym systemem kontaktu jest w trakcie konfiguracji — wkrótce potwierdzimy doręczenie.",
+        "Odebraliśmy Twoją wiadomość. Odezwiemy się najszybciej jak to możliwe, aby ustalić dogodny termin rozmowy.",
     },
     // Social / legal are unverified
     social: null as null | { facebook?: string; linkedin?: string; instagram?: string },
   },
 
+  legal: {
+    entityName: null as string | null,
+    nip: null as string | null,
+    regon: null as string | null,
+    krs: null as string | null,
+    address: null as string | null,
+    privacyEmail: "biuro@konkretni.com.pl",
+  },
+
   footer: {
     brandNote: "KONKRETNI — Konkrety nie obietnice.",
-    legal: {
-      entity: "Zespół agentów ubezpieczeniowych KONKRETNI" as string | null,
-      nip: null as string | null,
-      regon: null as string | null,
-      krs: null as string | null,
-    },
     links: [
       { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
       { label: "Kontakt", href: "#kontakt" },
