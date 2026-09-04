@@ -21,8 +21,10 @@ const ATTRIBUTION_PARAMS = [
 export type LeadAttribution = Partial<Record<(typeof ATTRIBUTION_PARAMS)[number], string>> & {
   /** Page that captured the lead (e.g. "/wideo"). */
   landing_page?: string;
-  /** Internal lead-source tag (e.g. "landing-wideo"). */
+  /** Internal lead-source tag (e.g. "landing-wideo", "homepage", "rekrutacja", "wspolpraca"). */
   source?: string;
+  /** Optional lead interest (e.g. "benefit-pracowniczy", "leczenie", "oszczednosci", "posag"). */
+  interest?: string;
 };
 
 function sanitize(value: string): string | undefined {
@@ -48,7 +50,11 @@ function readStored(): Record<string, string> {
  * Reads attribution params from the current URL (if any), merges them over the
  * session-stored values and persists the result. Returns the merged attribution.
  */
-export function captureAttribution(input: { landingPage: string; source: string }): LeadAttribution {
+export function captureAttribution(input: {
+  landingPage: string;
+  source: string;
+  interest?: string;
+}): LeadAttribution {
   const merged: Record<string, string> = readStored();
 
   if (typeof window !== "undefined") {
@@ -58,6 +64,12 @@ export function captureAttribution(input: { landingPage: string; source: string 
       const clean = raw ? sanitize(raw) : undefined;
       if (clean) merged[key] = clean;
     }
+    // Also capture URL-specified interest if present (?interest=... or ?temat=...)
+    const urlInterest = params.get("interest") || params.get("temat");
+    if (urlInterest) {
+      const cleanInterest = sanitize(urlInterest);
+      if (cleanInterest) merged.interest = cleanInterest;
+    }
     try {
       window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
     } catch {
@@ -65,5 +77,10 @@ export function captureAttribution(input: { landingPage: string; source: string 
     }
   }
 
-  return { ...merged, landing_page: input.landingPage, source: input.source } as LeadAttribution;
+  return {
+    ...merged,
+    landing_page: input.landingPage,
+    source: input.source,
+    ...(input.interest ? { interest: sanitize(input.interest) } : {}),
+  } as LeadAttribution;
 }

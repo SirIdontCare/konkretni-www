@@ -20,20 +20,20 @@ export const siteConfig = {
 
   nav: {
     links: [
-      { label: "Obszary", href: "#obszary" },
-      { label: "Jak działamy", href: "#proces" },
-      { label: "Ludzie", href: "#ludzie" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Jak pomagamy", href: "/#obszary" },
+      { label: "O nas", href: "/#ludzie" },
+      { label: "Współpraca", href: "/wspolpraca" },
+      { label: "Rekrutacja", href: "/rekrutacja" },
     ],
-    cta: { label: "Porozmawiajmy", href: "#kontakt" },
+    cta: { label: "Porozmawiajmy", href: "/#kontakt" },
   },
 
   hero: {
     eyebrow: "Konkrety nie obietnice",
     headline: ["Nie sprzedajemy ubezpieczeń.", "Budujemy bezpieczeństwo."],
     supporting: "Najpierw rozmowa.\nPotem plan.\nNa końcu rozwiązania, które naprawdę mają sens.",
-    cta: { label: "Porozmawiajmy", href: "#kontakt" },
-    secondaryCta: { label: "Jak działamy", href: "#proces" },
+    cta: { label: "Porozmawiajmy", href: "/#kontakt" },
+    secondaryCta: { label: "Jak działamy", href: "/#proces" },
     image: {
       src: "/photos/k1front.jpg",
       alt: "Zespół KONKRETNI — trzy osoby, naturalne światło, wspólna praca",
@@ -56,7 +56,7 @@ export const siteConfig = {
 
   areas: {
     label: "W czym pomagamy",
-    intro: "Trzy obszary, w których porządkujemy sprawy na lata — nie na chwilę.",
+    intro: "Pięć kluczowych obszarów, w których porządkujemy sprawy na lata — nie na chwilę.",
     items: [
       {
         number: "01",
@@ -74,12 +74,39 @@ export const siteConfig = {
       },
       {
         number: "03",
-        title: "Leczenie na Twoich zasadach.",
+        title: "Ochrona życia i zdrowia",
         description:
-          "Ochrona finansowa na wypadek choroby, wypadku lub śmierci. Tak, żeby rodzina miała bezpieczeństwo, a nie dodatkowy problem.",
-        framing: "Gdy przychodzi trudny moment, liczy się to, by mieć wybór i wsparcie finansowe.",
+          "Finansowe zabezpieczenie na wypadek poważnej choroby, wypadku lub niezdolności do pracy. Ochrona dochodu i stabilności domowego budżetu.",
+        framing:
+          "Gdy życie pisze trudniejszy scenariusz, liczy się pewność, że rodzina nie zostanie sama z obciążeniami finansowymi.",
+      },
+      {
+        number: "04",
+        title: "Leczenie w Polsce i za granicą",
+        description:
+          "Zintegrowany pakiet finansujący koszty prywatnego leczenia, operacji i rehabilitacji w kraju i na świecie, wraz z dostępem do drugiej opinii medycznej. Realna alternatywa i uzupełnienie publicznej ochrony zdrowia (NFZ).",
+        framing:
+          "Gdy liczy się czas i dostęp do sprawdzonych metod leczenia — bez wielomiesięcznych kolejek i kompromisów.",
+      },
+      {
+        number: "05",
+        title: "Polisa jako benefit pracowniczy",
+        description:
+          "Wartościowe pakiety ochronne dla zespołów oraz ponadstandardowy program kapitałowo-ochronny jako extra bonus dla kluczowych pracowników i kadry zarządzającej.",
+        framing:
+          "Dla pracownika to konkretna forma wsparcia. Dla firmy — sprawdzony sposób na docenienie i zatrzymanie kluczowych ludzi.",
       },
     ],
+  },
+
+  b2b: {
+    eyebrow: "Dla firm",
+    headline: "Benefit, który ma realną wartość.",
+    paragraphs: [
+      "Polisa może być dodatkowym benefitem pracowniczym — zarówno dla całego zespołu, jak i jako ponadstandardowe zabezpieczenie dla kluczowych osób w firmie.",
+      "Dla pracownika to konkretna forma ochrony. Dla firmy — sposób na rozszerzenie pakietu benefitów o coś, co może mieć znaczenie wtedy, kiedy naprawdę jest potrzebne.",
+    ],
+    cta: { label: "Porozmawiajmy o rozwiązaniu dla firmy", href: "#kontakt" },
   },
 
   audience: {
@@ -101,6 +128,10 @@ export const siteConfig = {
       {
         group: "Pracownicy i przedsiębiorcy",
         need: "chcą wiedzieć, ile realnie otrzymają w razie wypadku lub niezdolności do pracy.",
+      },
+      {
+        group: "Firmy i pracodawcy",
+        need: "szukają wartościowych benefitów pozapłacowych i zabezpieczenia dla kluczowych osób w zespole.",
       },
     ],
   },
@@ -195,7 +226,7 @@ export const siteConfig = {
       },
       {
         q: "W czym konkretnie pomagacie?",
-        a: "W trzech obszarach: 1) Oszczędności dla Ciebie — prywatne programy emerytalne, rozwiązania inwestycyjne i długoterminowe oszczędzanie. 2) Posag dla bliskich — środki na edukację dzieci i przyszłość bliskich, plan, który działa nawet wtedy, gdy Ciebie zabraknie przy sterach. 3) Leczenie na Twoich zasadach — ochrona finansowa na wypadek choroby, wypadku lub śmierci, tak żeby rodzina miała bezpieczeństwo, a nie dodatkowy problem.",
+        a: "W pięciu kluczowych obszarach: 1) Oszczędności dla Ciebie — prywatne programy emerytalne, rozwiązania kapitałowe i długoterminowe oszczędzanie. 2) Posag dla bliskich — środki na edukację dzieci i start w dorosłość. 3) Ochrona życia i zdrowia — finansowe zabezpieczenie na wypadek nagłych zdarzeń i niezdolności do pracy. 4) Leczenie w Polsce i za granicą — pakiet finansujący leczenie prywatne, zabiegi i dostęp do drugiej opinii medycznej jako realna alternatywa dla NFZ. 5) Polisa jako benefit pracowniczy — wartościowe programy ochronne dla zespołów oraz extra bonus dla kluczowych pracowników firmy.",
       },
       {
         q: "Czy muszę od razu podejmować decyzję?",
@@ -254,9 +285,23 @@ export const siteConfig = {
 
   footer: {
     brandNote: "KONKRETNI — Konkrety nie obietnice.",
-    links: [
+    navLinks: [
+      { label: "Jak pomagamy", href: "/#obszary" },
+      { label: "Jak działamy", href: "/#proces" },
+      { label: "O nas", href: "/#ludzie" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Kontakt", href: "/#kontakt" },
+    ],
+    secondaryLinks: [
+      { label: "Współpraca", href: "/wspolpraca" },
+      { label: "Rekrutacja", href: "/rekrutacja" },
       { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
-      { label: "Kontakt", href: "#kontakt" },
+      { label: "Mapa strony", href: "/sitemap.xml" },
+    ],
+    links: [
+      { label: "Współpraca", href: "/wspolpraca" },
+      { label: "Rekrutacja", href: "/rekrutacja" },
+      { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
     ],
     copyright: `© ${new Date().getFullYear()} KONKRETNI. Wszelkie prawa zastrzeżone.`,
   },

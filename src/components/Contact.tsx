@@ -1,7 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { siteConfig } from "@/content/site";
+import { captureAttribution } from "@/lib/attribution";
+
+export type ContactProps = {
+  source?: string;
+  defaultInterest?: string;
+  eyebrowOverride?: string;
+  headlineOverride?: string;
+  subOverride?: string;
+  benefitsOverride?: string[];
+  formTitleOverride?: string;
+  submitLabelOverride?: string;
+  id?: string;
+};
 
 type FieldErrors = Partial<Record<"name" | "email" | "phone" | "message", string>>;
 
@@ -21,13 +34,33 @@ function validate(values: { name: string; email: string; phone: string; message:
   return errs;
 }
 
-export function Contact() {
+export function Contact({
+  source = "homepage",
+  defaultInterest,
+  eyebrowOverride,
+  headlineOverride,
+  subOverride,
+  benefitsOverride,
+  formTitleOverride,
+  submitLabelOverride,
+  id = "kontakt",
+}: ContactProps = {}) {
   const { contact } = siteConfig;
   const [values, setValues] = useState({ name: "", email: "", phone: "", message: "", _hp: "" });
+  const [interest, setInterest] = useState<string | undefined>(defaultInterest);
   const [errors, setErrors] = useState<FieldErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [status, setStatus] = useState<null | { type: "success" | "error" | "info"; title: string; body: string }>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const onInterest = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail) setInterest(detail);
+    };
+    window.addEventListener("konkretni:interest", onInterest);
+    return () => window.removeEventListener("konkretni:interest", onInterest);
+  }, []);
 
   const hasContactDetails = Boolean(contact.phone || contact.email || contact.address);
 
@@ -44,11 +77,18 @@ export function Contact() {
     setSubmitting(true);
     setStatus(null);
 
+    const effectiveInterest = interest ?? defaultInterest;
+    const attribution = captureAttribution({
+      landingPage: typeof window !== "undefined" ? window.location.pathname : "/",
+      source,
+      interest: effectiveInterest,
+    });
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, attribution }),
       });
 
       if (res.ok) {
@@ -79,19 +119,30 @@ export function Contact() {
     }
   };
 
+  const displayEyebrow = eyebrowOverride ?? contact.label;
+  const displayHeadline = headlineOverride ?? contact.headline;
+  const displaySub = subOverride ?? contact.sub;
+  const displayBenefits = benefitsOverride ?? [
+    "Najpierw słuchamy — potem porządkujemy kierunek.",
+    "Bez presji i bez pustych obietnic.",
+    "Rozwiązania dopiero wtedy, gdy mają sens.",
+  ];
+  const displayFormTitle = formTitleOverride ?? "Zostaw kontakt — oddzwonimy";
+  const displaySubmitLabel = submitLabelOverride ?? contact.form.submitLabel;
+
   return (
-    <section id="kontakt" className="section contact" aria-labelledby="contact-heading">
+    <section id={id} className="section contact" aria-labelledby={`${id}-heading`}>
       <div className="container">
         <div className="contact-grid">
           <div className="contact-copy">
-            <div className="eyebrow">{contact.label}</div>
-            <h2 id="contact-heading">{contact.headline}</h2>
-            <p>{contact.sub}</p>
+            <div className="eyebrow">{displayEyebrow}</div>
+            <h2 id={`${id}-heading`}>{displayHeadline}</h2>
+            <p>{displaySub}</p>
 
             <ul className="contact-benefits" aria-label="Dlaczego warto napisać">
-              <li>Najpierw słuchamy — potem porządkujemy kierunek.</li>
-              <li>Bez presji i bez pustych obietnic.</li>
-              <li>Rozwiązania dopiero wtedy, gdy mają sens.</li>
+              {displayBenefits.map((b) => (
+                <li key={b}>{b}</li>
+              ))}
             </ul>
 
             {hasContactDetails && (
@@ -118,7 +169,7 @@ export function Contact() {
           </div>
 
           <div className="contact-card" aria-labelledby="contact-form-title">
-            <h3 id="contact-form-title">Zostaw kontakt — oddzwonimy</h3>
+            <h3 id="contact-form-title">{displayFormTitle}</h3>
             <p>Pola oznaczone * są wymagane. Odpowiadamy bez presji — ustalamy dogodny termin rozmowy.</p>
 
             <form noValidate onSubmit={onSubmit} aria-describedby="form-privacy">
@@ -223,7 +274,7 @@ export function Contact() {
 
                 <div className="form-actions">
                   <button type="submit" className="btn btn--primary" disabled={submitting} aria-busy={submitting}>
-                    {submitting ? "Wysyłanie…" : contact.form.submitLabel}
+                    {submitting ? "Wysyłanie…" : displaySubmitLabel}
                   </button>
                 </div>
 

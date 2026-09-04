@@ -20,6 +20,9 @@ export default function Home() {
           <div className="rule" aria-hidden="true" />
         </div>
         <Areas />
+        <div className="container">
+          <div className="rule" aria-hidden="true" />
+        </div>
         <Process />
         <Outcomes />
         <Team />

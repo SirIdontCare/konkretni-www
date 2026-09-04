@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/content/site";
 
 export function Footer() {
@@ -22,31 +23,35 @@ export function Footer() {
             <h4>Nawigacja</h4>
             <ul className="footer-links">
               <li>
-                <a href="#obszary">Obszary</a>
+                <Link href="/#obszary">Jak pomagamy</Link>
               </li>
               <li>
-                <a href="#proces">Jak działamy</a>
+                <Link href="/#proces">Jak działamy</Link>
               </li>
               <li>
-                <a href="#ludzie">Ludzie</a>
+                <Link href="/#ludzie">O nas</Link>
               </li>
               <li>
-                <a href="#faq">FAQ</a>
+                <Link href="/#faq">FAQ</Link>
               </li>
               <li>
-                <a href="#kontakt">Kontakt</a>
+                <Link href="/#kontakt">Kontakt</Link>
               </li>
             </ul>
           </div>
 
           <div className="footer-col">
-            <h4>Informacje</h4>
+            <h4>Współpraca i informacje</h4>
             <ul className="footer-links">
-              {footer.links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
-                </li>
-              ))}
+              <li>
+                <Link href="/wspolpraca">Współpraca</Link>
+              </li>
+              <li>
+                <Link href="/rekrutacja">Rekrutacja</Link>
+              </li>
+              <li>
+                <Link href="/polityka-prywatnosci">Polityka prywatności</Link>
+              </li>
               <li>
                 <a href="/sitemap.xml">Mapa strony</a>
               </li>

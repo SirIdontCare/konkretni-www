@@ -20,7 +20,17 @@ type Payload = {
   attribution?: Record<string, unknown>; // Optional lead attribution (fbclid/UTM/source) — never trusted raw
 };
 
-const ATTRIBUTION_KEYS = ["fbclid", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "landing_page", "source"] as const;
+const ATTRIBUTION_KEYS = [
+  "fbclid",
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_content",
+  "utm_term",
+  "landing_page",
+  "source",
+  "interest",
+] as const;
 
 function sanitizeAttribution(raw: Record<string, unknown> | undefined): Record<string, string> {
   const out: Record<string, string> = {};

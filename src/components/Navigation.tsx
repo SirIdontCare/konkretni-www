@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/content/site";
 
 type NavLink = { label: string; href: string };
@@ -57,7 +58,7 @@ export function Navigation({
     <header className={navClass} role="banner">
       <div className="container">
         <div className="nav-inner">
-          <a href="#" className="nav-brand" aria-label={`${siteConfig.brand.name} — strona główna`}>
+          <Link href="/" className="nav-brand" aria-label={`${siteConfig.brand.name} — strona główna`}>
             <Image
               src={isHero ? siteConfig.brand.logo.dark : siteConfig.brand.logo.light}
               alt={siteConfig.brand.logo.alt}
@@ -71,22 +72,22 @@ export function Navigation({
               {siteConfig.brand.name}
               <small>{siteConfig.brand.tagline}</small>
             </span>
-          </a>
+          </Link>
 
           <nav aria-label="Główna nawigacja" className="hidden md:flex">
             <ul className="nav-links">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href}>{l.label}</a>
+                  <Link href={l.href}>{l.label}</Link>
                 </li>
               ))}
             </ul>
           </nav>
 
           <div className="nav-actions">
-            <a href={navCta.href} className="btn btn--primary nav-desktop" style={{ display: open ? "none" : undefined }}>
+            <Link href={navCta.href} className="btn btn--primary nav-desktop" style={{ display: open ? "none" : undefined }}>
               {navCta.label}
-            </a>
+            </Link>
             <button
               type="button"
               className="nav-toggle"
@@ -105,16 +106,16 @@ export function Navigation({
             <ul className="mobile-links">
               {navLinks.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} onClick={() => setOpen(false)}>
+                  <Link href={l.href} onClick={() => setOpen(false)}>
                     {l.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
             <div style={{ marginTop: 18, display: "flex", gap: 12 }}>
-              <a href={navCta.href} className="btn btn--primary" style={{ flex: 1 }} onClick={() => setOpen(false)}>
+              <Link href={navCta.href} className="btn btn--primary" style={{ flex: 1 }} onClick={() => setOpen(false)}>
                 {navCta.label}
-              </a>
+              </Link>
             </div>
           </nav>
         </div>
