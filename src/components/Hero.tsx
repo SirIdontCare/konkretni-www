@@ -33,7 +33,7 @@ export function Hero() {
           </div>
 
           <div className="hero-visual reveal" style={{ animationDelay: "80ms" }}>
-            <figure className="hero-figure">
+            <div className="hero-figure">
               <div className="hero-frame">
                 <Image
                   src={hero.image.src}
@@ -45,11 +45,7 @@ export function Hero() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <figcaption className="hero-figcap">
-                <span className="hero-figcap-kicker">Fotografia autentyczna • k1front</span>
-                <span className="hero-figcap-title">Ludzie za KONKRETNI — realny zespół, nie stock</span>
-              </figcaption>
-            </figure>
+            </div>
           </div>
         </div>
       </div>
